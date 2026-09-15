@@ -1,5 +1,7 @@
 idf_component_register(
     SRCS "main.c"
+         "voice_memo.c"
+         "font_sui_16.c"
          "demo_navigation.c"
          "ui_pixel.c"
          "ui_pixel_math.c"
