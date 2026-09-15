@@ -17,6 +17,11 @@ typedef struct {
 void demo_display_enter(void); void demo_display_exit(void);
 void demo_display_key(bsp_btn_t btn, bsp_btn_ev_t ev);
 
+// 碎碎念应用(main/voice_memo.c)
+void voice_memo_enter(void);   void voice_memo_exit(void);
+void voice_memo_key(bsp_btn_t btn, bsp_btn_ev_t ev);
+esp_err_t voice_memo_start(void); esp_err_t voice_memo_stop(void);
+
 void demo_button_enter(void);  void demo_button_exit(void);
 void demo_button_key(bsp_btn_t btn, bsp_btn_ev_t ev);
 
