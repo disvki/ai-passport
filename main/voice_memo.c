@@ -33,7 +33,7 @@
 #include <dirent.h>
 #include <unistd.h>
 
-LV_FONT_DECLARE(font_sui_16);
+LV_FONT_DECLARE(sui_16);
 
 static const char *TAG = "voice_memo";
 
@@ -168,7 +168,7 @@ static void epoch_to_local(uint32_t e, int *y, int *mo, int *d, int *hh, int *mi
 static lv_obj_t *mk_label(lv_obj_t *parent, const char *txt, lv_coord_t x, lv_coord_t y,
                           lv_coord_t w, int color) {
     lv_obj_t *l = lv_label_create(parent);
-    lv_obj_set_style_text_font(l, &font_sui_16, 0);
+    lv_obj_set_style_text_font(l, &sui_16, 0);
     lv_obj_set_style_text_color(l, lv_color_hex(color), 0);
     lv_label_set_text(l, txt);
     lv_obj_set_pos(l, x, y);
@@ -200,7 +200,7 @@ static lv_obj_t *add_row(int idx, const char *txt, bool selected) {
     lv_obj_t *p = ui_pixel_panel_create(s_rows_box, 0, idx * 36, 224, 30, UI_PAPER);
     ui_pixel_set_selected(p, selected, true);
     lv_obj_t *l = lv_label_create(p);
-    lv_obj_set_style_text_font(l, &font_sui_16, 0);
+    lv_obj_set_style_text_font(l, &sui_16, 0);
     lv_obj_set_style_text_color(l, lv_color_hex(UI_INK), 0);
     lv_label_set_long_mode(l, LV_LABEL_LONG_DOT);
     lv_obj_set_width(l, 204);
