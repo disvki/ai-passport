@@ -166,10 +166,10 @@ static void epoch_to_local(uint32_t e, int *y, int *mo, int *d, int *hh, int *mi
 
 // ---------- UI 基础 ----------
 static lv_obj_t *mk_label(lv_obj_t *parent, const char *txt, lv_coord_t x, lv_coord_t y,
-                          lv_coord_t w, lv_color_t color) {
+                          lv_coord_t w, int color) {
     lv_obj_t *l = lv_label_create(parent);
     lv_obj_set_style_text_font(l, &font_sui_16, 0);
-    lv_obj_set_style_text_color(l, color, 0);
+    lv_obj_set_style_text_color(l, lv_color_hex(color), 0);
     lv_label_set_text(l, txt);
     lv_obj_set_pos(l, x, y);
     if (w > 0) {
@@ -193,7 +193,7 @@ static void build_page_shell(const char *title) {
     lv_obj_set_style_bg_opa(s_rows_box, LV_OPA_TRANSP, 0);
     lv_obj_set_style_border_width(s_rows_box, 0, 0);
     lv_obj_set_style_pad_all(s_rows_box, 0, 0);
-    s_footer = mk_label(s_scr, "", 8, 290, 224, lv_color_hex(0xFFFFFF));
+    s_footer = mk_label(s_scr, "", 8, 290, 224, 0xFFFFFF);
 }
 
 static lv_obj_t *add_row(int idx, const char *txt, bool selected) {
@@ -626,7 +626,7 @@ static void render(void) {
             add_row(shown + 1, line, s_sel == i + 1);
         }
         if (s_rec_cnt == 0) {
-            mk_label(s_rows_box, "空空如也,录一条吧", 36, 140, 180, lv_color_hex(UI_INK));
+            mk_label(s_rows_box, "空空如也,录一条吧", 36, 140, 180, UI_INK);
         }
     } else if (s_page == PG_REC) {
         s_rec_time = mk_label(s_rows_box, "00:00", 62, 40, 100, UI_INK);
@@ -702,9 +702,6 @@ static void goto_page(page_t p) {
         } else {
             s_tf[0] = 2026; s_tf[1] = 1; s_tf[2] = 1; s_tf[3] = 8; s_tf[4] = 0;
         }
-        s_tf_active = true;
-    } else {
-        s_tf_active = false;
     }
     render();
 }
