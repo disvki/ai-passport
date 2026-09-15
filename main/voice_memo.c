@@ -233,14 +233,14 @@ static void scan_recs(void) {
         unsigned long ts;
         if (sscanf(ent->d_name, "R%lu.wav", &ts) != 1) continue;
         char path[80];
-        snprintf(path, sizeof(path), MOUNT_BASE "/%s", ent->d_name);
+        snprintf(path, sizeof(path), MOUNT_BASE "/%.32s", ent->d_name);
         struct stat st;
         if (stat(path, &st) != 0 || st.st_size <= WAV_HEADER) continue;
         rec_item_t *it = &s_recs[s_rec_cnt++];
         it->ts = (uint32_t)ts;
         it->size = (uint32_t)st.st_size;
         it->dur = (st.st_size - WAV_HEADER) / BYTES_PER_SEC;
-        snprintf(it->name, sizeof(it->name), "%s", ent->d_name);
+        snprintf(it->name, sizeof(it->name), "%.47s", ent->d_name);
     }
     closedir(dir);
     for (int i = 0; i < s_rec_cnt - 1; i++)
